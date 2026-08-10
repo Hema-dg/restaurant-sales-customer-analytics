@@ -1,0 +1,360 @@
+RESTAURANT SALES & CUSTOMER ANALYTICS
+
+SQL Data Analytics Project
+
+PROBLEM STATEMENT
+
+The restaurant generates a large amount of data related to customers, orders, menu items, payments, and feedback. However, this data is not being effectively analyzed to understand sales performance, customer behavior, menu performance, and payment patterns. This project aims to use SQL-based data analysis to transform the restaurant's raw data into meaningful business insights that can support better decision-making.
+
+
+PROJECT OBJECTIVES
+
+1. Analyze overall restaurant sales and revenue performance.
+2. Identify sales trends over time.
+3. Analyze customer purchasing behavior and spending patterns.
+4. Identify the top-performing and underperforming menu items.
+5. Analyze payment methods and payment performance.
+6. Analyze customer feedback and ratings.
+7. Identify meaningful business insights using SQL.
+8. Build an interactive dashboard to present the key findings.
+
+PROJECT SCOPE
+
+This project will focus on analyzing restaurant data related to customers, menu items, orders, payments, and customer feedback. The analysis will cover sales performance, customer purchasing behavior, menu item performance, payment patterns, and customer satisfaction. SQL will be used for data management, cleaning, transformation, and analysis, while Power BI will be used to visualize the final insights through an interactive dashboard.
+
+DATABASE TABLES
+
+1. Customer
+   Stores customer information.
+
+2. Menu
+   Stores restaurant menu item information.
+
+3. Orders
+   Stores information about customer orders.
+
+4. OrderDetails
+   Stores the individual menu items included in each order.
+
+5. Payment
+   Stores payment information for orders.
+
+6. Feedback
+   Stores customer ratings and feedback for orders.
+
+CUSTOMER TABLE
+
+CustomerID - Primary Key - Unique identifier for each customer
+CustomerName - Name of the customer
+PhoneNumber - Customer contact number
+City - Customer's city
+RegistrationDate - Date the customer registered
+
+MENU TABLE
+s
+MenuID - Primary Key - Unique identifier for each menu item
+ItemName - Name of the menu item
+Category - Category of the menu item
+Price - Selling price of the menu item
+
+
+ORDERS TABLE
+
+OrderID - Primary Key - Unique identifier for each order
+CustomerID - Foreign Key - Identifies the customer who placed the order
+OrderDate - Date on which the order was placed
+OrderStatus - Current status of the order
+
+
+ORDER DETAILS TABLE
+
+OrderDetailID - Primary Key - Unique identifier for each order item record
+OrderID - Foreign Key - Identifies the related order
+MenuID - Foreign Key - Identifies the menu item ordered
+Quantity - Number of units of the menu item ordered
+
+PAYMENT TABLE
+
+PaymentID - Primary Key - Unique identifier for each payment
+OrderID - Foreign Key - Identifies the related order
+PaymentDate - Date on which the payment was made
+PaymentMethod - Method used for payment
+PaymentAmount - Amount paid for the order
+PaymentStatus - Status of the payment
+
+FEEDBACK TABLE
+
+FeedbackID - Primary Key - Unique identifier for each feedback record
+OrderID - Foreign Key - Identifies the related order
+Rating - Customer rating for the order
+FeedbackDate - Date on which the feedback was provided
+
+MYSQL DATA TYPES
+
+CUSTOMER
+CustomerID - INT
+CustomerName - VARCHAR(100)
+PhoneNumber - VARCHAR(15)
+City - VARCHAR(50)
+RegistrationDate - DATE
+
+MENU
+MenuID - INT
+ItemName - VARCHAR(100)
+Category - VARCHAR(50)
+Price - DECIMAL(10,2)
+
+ORDERS
+OrderID - INT
+CustomerID - INT
+OrderDate - DATETIME
+OrderStatus - VARCHAR(20)
+
+ORDERDETAILS
+OrderDetailID - INT
+OrderID - INT
+MenuID - INT
+Quantity - INT
+
+PAYMENT
+PaymentID - INT
+OrderID - INT
+PaymentDate - DATETIME
+PaymentMethod - VARCHAR(20)
+PaymentAmount - DECIMAL(10,2)
+PaymentStatus - VARCHAR(20)
+
+FEEDBACK
+FeedbackID - INT
+OrderID - INT
+Rating - INT
+FeedbackDate - DATE
+
+DATABASE CONSTRAINTS
+
+CUSTOMER
+CustomerID - PRIMARY KEY
+CustomerName - NOT NULL
+PhoneNumber - NOT NULL
+City - NOT NULL
+RegistrationDate - NOT NULL
+
+MENU
+MenuID - PRIMARY KEY
+ItemName - NOT NULL
+Category - NOT NULL
+Price - NOT NULL
+Price must be greater than 0
+
+ORDERS
+OrderID - PRIMARY KEY
+CustomerID - FOREIGN KEY → CUSTOMER(CustomerID)
+CustomerID - NOT NULL
+OrderDate - NOT NULL
+OrderStatus - NOT NULL
+
+ORDERDETAILS
+OrderDetailID - PRIMARY KEY
+OrderID - FOREIGN KEY → ORDERS(OrderID)
+MenuID - FOREIGN KEY → MENU(MenuID)
+Quantity - NOT NULL
+Quantity must be greater than 0
+
+PAYMENT
+PaymentID - PRIMARY KEY
+OrderID - FOREIGN KEY → ORDERS(OrderID)
+OrderID - UNIQUE
+PaymentDate - NOT NULL
+PaymentMethod - NOT NULL
+PaymentAmount - NOT NULL
+PaymentAmount must be greater than or equal to 0
+PaymentStatus - NOT NULL
+
+FEEDBACK
+FeedbackID - PRIMARY KEY
+OrderID - FOREIGN KEY → ORDERS(OrderID)
+OrderID - UNIQUE
+Rating - NOT NULL
+Rating must be between 1 and 5
+FeedbackDate - NOT NULLDONE
+
+ALLOWED VALUES
+
+OrderStatus:
+Pending
+Preparing
+Completed
+Cancelled
+
+PaymentMethod:
+Cash
+UPI
+Card
+
+PaymentStatus:
+Paid
+Pending
+Failed
+
+Rating:
+1 to 5
+
+
+DATASET PLAN
+
+Customer - 100 rows
+Menu - 30 rows
+Orders - 500 rows
+OrderDetails - 928 rows
+Payment - 500 rows
+Feedback - 500 rows
+Dataset Type:
+Synthetic data created for analytical purposes.
+
+MENU DATA DESIGN
+
+Number of menu items: 30
+
+Categories:
+- Starter
+- Main Course
+- Pizza
+- Burger
+- Biryani
+- Dessert
+- Beverage
+
+Each menu item will have:
+MenuID
+ItemName
+Category
+Price
+
+Prices will vary realistically across categories to support meaningful sales and revenue analysis.
+
+
+CUSTOMER DATA DESIGN
+
+Number of customers: 100
+
+CustomerID:
+1 to 100
+
+Cities:
+- Bengaluru
+- Mysuru
+- Hubballi
+- Mangaluru
+- Chennai
+- Hyderabad
+
+Customer fields:
+CustomerID
+CustomerName
+PhoneNumber
+City
+RegistrationDate
+
+Dataset type:
+Synthetic data
+
+ORDERS DATA DESIGN
+
+Number of orders: 500
+
+OrderID:
+1001 to 1500
+
+Order period:
+January 2026 to June 2026
+
+Order times:
+Lunch: 11:30 AM - 3:00 PM
+Evening: 5:00 PM - 7:00 PM
+Dinner: 7:00 PM - 10:30 PM
+
+OrderStatus:
+Completed - approximately 80%
+Preparing - approximately 8%
+Pending - approximately 5%
+Cancelled - approximately 7%
+
+CustomerID:
+Randomly assigned from existing CustomerID values (1-100).
+
+Dataset type:
+Synthetic data created for analytical purposes.
+
+ORDERDETAILS DATA DESIGN
+
+Target rows:
+Approximately 1,000
+
+Each order:
+1 to 3 menu items
+
+Fields:
+OrderDetailID
+OrderID
+MenuID
+Quantity
+
+MenuID:
+Must reference existing MenuID values (1-30)
+
+Quantity:
+1 to 5 units per item
+
+Cancelled orders:
+Will not receive OrderDetails because they are not treated as sales.
+
+Dataset type:
+Synthetic data created for analytical purposes.
+
+PAYMENT DATA DESIGN
+
+Number of payments: 500
+
+PaymentID:
+5001 to 5500
+
+OrderID:
+1001 to 1500
+
+PaymentMethod:
+Cash
+UPI
+Card
+
+PaymentStatus:
+Paid
+Pending
+Failed
+
+PaymentDate:
+Based on OrderDate.
+
+PaymentAmount:
+Based on the value of items in the corresponding order.
+
+Dataset type:
+Synthetic data created for analytical purposes.
+
+FEEDBACK DATA DESIGN
+
+Number of feedback records: 500
+
+FeedbackID:
+6001 to 6500
+
+OrderID:
+1001 to 1500
+
+Rating:
+1 to 5
+
+FeedbackDate:
+Based on OrderDate.
+
+Dataset type:
+Synthetic data created for analytical purposes.
