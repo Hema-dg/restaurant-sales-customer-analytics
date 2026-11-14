@@ -143,3 +143,13 @@ The project transforms restaurant data into meaningful analytical information us
 ## 👩‍💻 Project Type
 
 **SQL Data Analytics Project**
+
+
+
+## ▶️ How to Run
+
+1. Install MySQL and MySQL Workbench.
+2. Download `restaurant_analytics.sql` from this repo.
+3. Open the file in MySQL Workbench.
+4. Run the script from top to bottom (click the lightning bolt icon, or press Ctrl+Shift+Enter).
+5. The script creates the database and tables, inserts the data, and runs all the analysis queries.
